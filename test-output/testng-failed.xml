@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite A]">
+  <test name="GmailLogin(failed)">
+    <classes>
+      <class name="com.omayo.hybrid.testcases.GmailLogin">
+        <methods>
+          <include name="quit"/>
+          <include name="doLogin" invocation-numbers="1 2"/>
+        </methods>
+      </class> <!-- com.omayo.hybrid.testcases.GmailLogin -->
+    </classes>
+  </test> <!-- GmailLogin(failed) -->
+</suite> <!-- Failed suite [Suite A] -->

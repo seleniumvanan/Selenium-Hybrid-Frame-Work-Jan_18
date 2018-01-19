@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<project name="Core Hybrid Framework" basedir="." default="run">
+
+	<!-- 'init' target for Initializing Variables -->
+	<target name="init">
+		<property name="bin" value="${basedir}/build"/>
+		<property name="lib" value="${basedir}/libraries"/>
+		<property name="src" value="${basedir}/src"/>
+		<property name="report" value="${basedir}/report"/>
+	</target>
+
+	<!-- 'clean' target -->
+	<target name="clean" depends="init">
+		<echo message="Deleting existing report folder" />
+		<delete dir="${report}" />
+		<echo message="Deleting existing bin folder" />
+		<delete dir="${bin}" />
+	</target>
+
+	<!-- 'compile' target -->
+	<target name="compile" depends="clean">
+		<echo message="making directory..."/>
+		<mkdir dir="${bin}"/>
+		<javac srcdir="${src}" destdir="${bin}" debug="true" includeantruntime="false">
+			<classpath>
+				<pathelement path="${bin}"></pathelement>
+				<fileset dir="${lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- ======Set the classpath ====-->
+	<path id="classpath" >
+		<pathelement path="${bin}"></pathelement>
+		<fileset dir="${lib}">
+			<include name="**/*.jar"/>
+		</fileset>
+	</path>
+
+	<!-- 'run' target -->
+	<target name="run" depends="compile">
+		<mkdir dir="${report}" />
+		<taskdef name="testng" classname="org.testng.TestNGAntTask">
+			<classpath location="${lib}/testng-6.8.5.jar" />
+		</taskdef>
+		<testng outputdir="${report}" useDefaultListeners="true">
+			<classpath>
+				<pathelement path="${bin}"></pathelement>
+				<fileset dir="${lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+			<xmlfileset dir="${basedir}" includes="src/test/resources/testng.xml" />
+		</testng>
+	</target>
+	
+
+</project>

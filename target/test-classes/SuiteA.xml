@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite A">
+
+<test name="GmailLogin">
+    <classes>
+       <class name="com.omayo.hybrid.testcases.GmailLogin"/>
+    </classes>
+ </test> <!-- Test -->
+  
+</suite> <!-- Suite -->
